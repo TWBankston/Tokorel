@@ -1,0 +1,21 @@
+DirectoryIndex index.html
+
+# Process PHP files
+AddHandler application/x-httpd-php .php
+
+# Rewrite rules for clean URLs
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Don't rewrite actual files or directories
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Rewrite /download to /download.html
+    RewriteRule ^download$ /download.html [L]
+
+    # Rewrite /api/subscribe to /api/subscribe.php
+    RewriteRule ^api/subscribe$ /api/subscribe.php [L]
+</IfModule>

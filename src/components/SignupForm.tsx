@@ -3,9 +3,6 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 
-const REACH_API_URL = "https://api.hostinger.com/api/reach/v1/contacts";
-const REACH_API_KEY = "IR5Su1tXK7vUrQKCEbswLhhUYxla8aS4qXZ9IpcZe07fa41e";
-
 interface SignupFormProps {
   variant: "hero" | "cta";
 }
@@ -37,17 +34,21 @@ export default function SignupForm({ variant }: SignupFormProps) {
     }
 
     try {
-      await fetch(REACH_API_URL, {
+      const res = await fetch("/api/subscribe.php", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${REACH_API_KEY}`,
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: trimmedName, email: trimmedEmail }),
-        mode: "cors",
-      }).catch(() => {});
+      });
 
-      router.push("/download");
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        setStatus("error");
+        setErrorMsg(data.error || "Something went wrong. Please try again.");
+        return;
+      }
+
+      router.push(data.redirectUrl || "/download");
     } catch {
       router.push("/download");
     }
