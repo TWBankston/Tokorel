@@ -14,33 +14,27 @@ export default function AudioPlayer() {
     audio.volume = 0.3;
     audioRef.current = audio;
 
+    const events = ["click", "scroll", "keydown", "mousemove", "touchstart"];
+
     function tryPlay() {
       if (startedRef.current) return;
       startedRef.current = true;
       audio.play().then(() => {
         setPlaying(true);
-        removeListeners();
+        events.forEach((e) => window.removeEventListener(e, tryPlay));
       }).catch(() => {
         startedRef.current = false;
       });
     }
 
-    function removeListeners() {
-      const events = ["click", "scroll", "keydown", "mousemove", "touchstart"];
-      events.forEach((e) => window.removeEventListener(e, tryPlay));
-    }
+    // Always register interaction listeners first
+    events.forEach((e) => window.addEventListener(e, tryPlay));
 
-    // Attempt autoplay immediately
+    // Then attempt autoplay
     tryPlay();
 
-    // Fallback: start on first user interaction
-    if (!startedRef.current) {
-      const events = ["click", "scroll", "keydown", "mousemove", "touchstart"];
-      events.forEach((e) => window.addEventListener(e, tryPlay, { once: true }));
-    }
-
     return () => {
-      removeListeners();
+      events.forEach((e) => window.removeEventListener(e, tryPlay));
       audio.pause();
       audio.src = "";
     };
