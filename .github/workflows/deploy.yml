@@ -27,6 +27,11 @@ jobs:
       - name: Build static export
         run: npm run build
 
+      - name: Copy server files to output
+        run: |
+          cp public/.htaccess out/.htaccess
+          cp -r public/api out/api
+
       - name: Deploy to deploy branch
         uses: peaceiris/actions-gh-pages@v4
         with:
