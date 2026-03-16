@@ -4,6 +4,7 @@ import SignupForm from "@/components/SignupForm";
 import BeamCard from "@/components/BeamCard";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AudioPlayer from "@/components/AudioPlayer";
 
 export default function LandingPage() {
   return (
@@ -125,6 +126,8 @@ export default function LandingPage() {
       {/* Background Ambient Elements */}
       <div className="fixed top-0 right-0 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
       <div className="fixed bottom-0 left-0 w-96 h-96 bg-accent/5 blur-[120px] rounded-full pointer-events-none" />
+
+      <AudioPlayer />
     </>
   );
 }
