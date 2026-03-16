@@ -16,6 +16,6 @@ AddHandler application/x-httpd-php .php
     # Rewrite /download to /download.html
     RewriteRule ^download$ /download.html [L]
 
-    # Rewrite /api/subscribe to /api/subscribe.php
-    RewriteRule ^api/subscribe$ /api/subscribe.php [L]
+    # Rewrite /subscribe to /subscribe.php
+    RewriteRule ^subscribe$ /subscribe.php [L]
 </IfModule>

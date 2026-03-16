@@ -30,7 +30,7 @@ jobs:
       - name: Copy server files to output
         run: |
           cp public/.htaccess out/.htaccess
-          cp -r public/api out/api
+          cp public/subscribe.php out/subscribe.php
 
       - name: Deploy to deploy branch
         uses: peaceiris/actions-gh-pages@v4

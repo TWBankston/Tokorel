@@ -34,7 +34,7 @@ export default function SignupForm({ variant }: SignupFormProps) {
     }
 
     try {
-      const res = await fetch("/api/subscribe.php", {
+      const res = await fetch("/subscribe.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: trimmedName, email: trimmedEmail }),
