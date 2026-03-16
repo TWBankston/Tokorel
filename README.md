@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tokorel Universe Website
+
+Official website for the Tokorel Series — an epic sci-fi romance saga by Drew Bankston.
+
+## Tech Stack
+
+- **Next.js 16** (React 19, App Router)
+- **TypeScript**
+- **Tailwind CSS v4**
+- **Hostinger Reach** for email lead generation
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20+ and npm
+
+### Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy the example file and add your Reach API key:
 
-## Learn More
+```bash
+cp .env.local.example .env.local
+```
 
-To learn more about Next.js, take a look at the following resources:
+Edit `.env.local` and set your `REACH_API_KEY`. See the file for instructions on how to get the key from your Hostinger dashboard.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+> **Note:** The site works without the API key — form submissions will still redirect users to the download page, but contacts won't be synced to Reach campaigns.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment on Hostinger
 
-## Deploy on Vercel
+### Option A: Node.js Hosting (VPS)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Upload the project zip to your server
+2. Extract the files
+3. Run the following commands:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm install
+npm run build
+npm start
+```
+
+The site runs on port 3000 by default. Configure your reverse proxy (nginx) to point to it.
+
+### Option B: Static Export (Shared Hosting)
+
+If your hosting doesn't support Node.js server processes, you can export a static version:
+
+1. Add `output: 'export'` to `next.config.ts`
+2. Run `npm run build`
+3. Upload the contents of the `out/` directory to your hosting
+
+> **Note:** Static export disables the API route. You'll need to submit forms directly to the Reach API from the client side, which exposes the API key. For production, Node.js hosting is recommended.
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── page.tsx              Landing page
+│   ├── download/page.tsx     Download page (epub + pdf)
+│   ├── api/subscribe/route.ts  Form submission -> Reach API
+│   └── layout.tsx            Root layout
+├── components/
+│   ├── ParticleCanvas.tsx    Galaxy particle animation
+│   ├── SignupForm.tsx        Name + Email signup form
+│   ├── BeamCard.tsx          Glowing border-beam hover effect
+│   ├── Header.tsx
+│   └── Footer.tsx
+└── styles/
+    └── globals.css           Tailwind + custom design system
+
+public/
+├── images/                   Book covers, characters, nebula bg
+├── downloads/                PDF prequel
+└── logo/                     Tokorel logo
+```
+
+## Hostinger Reach Setup
+
+1. Log in to [Hostinger hPanel](https://hpanel.hostinger.com)
+2. Go to **Reach** → **Settings** → **API**
+3. Generate a new API key
+4. Add it to your `.env.local` file as `REACH_API_KEY`
+5. Restart the server
+
+Once configured, every form submission will:
+- Create a contact in Reach with the subscriber's name and email
+- Redirect the user to the download page
+- (Optional) Trigger an automated welcome email via Reach campaigns
