@@ -27,10 +27,14 @@ jobs:
       - name: Build static export
         run: npm run build
 
-      - name: Copy server files to output
+      - name: Prepare server files
         run: |
           cp public/.htaccess out/.htaccess
           cp public/subscribe.php out/subscribe.php
+          # Remove placeholder config and setup.sql so they don't overwrite
+          # manually-uploaded credentials on Hostinger
+          rm -f out/auth/config.php
+          rm -f out/auth/setup.sql
 
       - name: Deploy to deploy branch
         uses: peaceiris/actions-gh-pages@v4

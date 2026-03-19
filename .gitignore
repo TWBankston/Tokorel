@@ -36,6 +36,10 @@ yarn-error.log*
 # deployment credentials
 DEPLOY.md
 
+# auth config with real DB credentials (upload manually via File Manager)
+public/auth/config.php
+public/auth/setup.sql
+
 # vercel
 .vercel
 
