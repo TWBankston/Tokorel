@@ -1,96 +1,98 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Footer from "@/components/Footer";
-import CountdownTimer from "@/components/CountdownTimer";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
-
-const EPUB_URL =
-  "https://assets.zyrosite.com/bIWAzaiH02VksK8O/tokorel-prequels-WCYNOmZUuEPAsb6X.epub";
-const PDF_URL = "/downloads/tokorel-prequel.pdf";
-
-const BOOKS = [
-  {
-    title: "Khizara",
-    cover: "/images/book-covers/khizara.jpeg",
-    description:
-      "The catalyst. Where the journey begins for the chosen bridge between worlds.",
-    label: "Book One",
-    href: "https://www.amazon.com/kindle-dbs/hz/subscribe/ku?ref=dbs_p_ebk_r00_pbcb_diupu0&passThroughAsin=B0C8S4TJWW",
-  },
-  {
-    title: "Tokorel",
-    cover: "/images/book-covers/tokorel-book-2.jpg",
-    description:
-      "The central system faces its ultimate trial as the prophecy unfolds across the stars.",
-    label: "Book Two",
-    href: null as string | null,
-  },
-  {
-    title: "Cornerstone",
-    cover: "/images/book-covers/cornerstone.jpg",
-    description:
-      "The final stand. Everything must be rebuilt from the fragments of the old world.",
-    label: "Book Three",
-    href: null as string | null,
-  },
-];
 
 export default function PortalPage() {
   return (
     <AuthProvider>
       <ProtectedRoute>
-        <PortalContent />
+        <DashboardContent />
       </ProtectedRoute>
     </AuthProvider>
   );
 }
 
-function PortalContent() {
+const SECTIONS = [
+  {
+    id: "downloads",
+    title: "The Archives",
+    subtitle: "Books & Downloads",
+    description: "Access exclusive novellas, the full book series, and companion content from the Tokorel Universe.",
+    href: "/portal-downloads",
+    icon: ArchiveIcon,
+    status: "ONLINE",
+    color: "primary",
+  },
+  {
+    id: "universe",
+    title: "Universe Guide",
+    subtitle: "Tokorel Star Map",
+    description: "Navigate the star systems, explore planetary data, and chart the territories of the divided civilizations.",
+    href: "#",
+    icon: MapIcon,
+    status: "COMING SOON",
+    color: "accent",
+  },
+  {
+    id: "characters",
+    title: "Dossier Files",
+    subtitle: "Character Bios",
+    description: "Classified intelligence on every key figure — alliances, backgrounds, and hidden agendas across the saga.",
+    href: "#",
+    icon: UsersIcon,
+    status: "COMING SOON",
+    color: "primary",
+  },
+];
+
+function DashboardContent() {
   const { user, logout } = useAuth();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <>
       <div className="fixed inset-0 grid-overlay pointer-events-none z-0" />
 
+      {/* Ambient glow effects */}
+      <div className="fixed top-[-20%] left-[-10%] w-[600px] h-[600px] bg-primary/[0.04] blur-[150px] rounded-full pointer-events-none" />
+      <div className="fixed bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-accent/[0.03] blur-[150px] rounded-full pointer-events-none" />
+
       <div className="relative z-10 flex flex-col min-h-screen">
-        <header className="relative z-30 w-full pt-6 pb-8 md:pb-12">
-          <div className="flex flex-col items-center gap-4 md:gap-0">
-            <div className="hidden md:grid grid-cols-3 items-center w-full max-w-5xl mx-auto px-6">
-              <nav className="flex items-center gap-8 justify-start">
-                <Link
-                  href="/"
-                  className="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors"
-                >
-                  Home
+        {/* Header */}
+        <header className="relative z-30 w-full pt-6 pb-4 border-b border-primary/10">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="hidden md:flex items-center justify-between">
+              <nav className="flex items-center gap-8">
+                <Link href="/portal" className="text-sm font-medium uppercase tracking-widest text-primary">
+                  Dashboard
                 </Link>
-                <Link
-                  href="/portal"
-                  className="text-sm font-medium uppercase tracking-widest text-primary"
-                >
-                  Books
+                <Link href="/portal-downloads" className="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
+                  Downloads
                 </Link>
               </nav>
 
-              <Link href="/" className="flex justify-center drop-shadow-[0_0_40px_rgba(13,242,242,0.25)]">
+              <Link href="/portal" className="absolute left-1/2 -translate-x-1/2 drop-shadow-[0_0_40px_rgba(13,242,242,0.25)]">
                 <Image
                   src="/logo/tokorel-logo-transparent.png"
                   alt="Tokorel Series"
-                  width={500}
-                  height={200}
-                  className="object-contain h-40 w-auto"
+                  width={300}
+                  height={120}
+                  className="object-contain h-20 w-auto"
                   priority
                 />
               </Link>
 
-              <nav className="flex items-center gap-8 justify-end">
+              <nav className="flex items-center gap-8">
                 {user?.role === "admin" && (
-                  <Link
-                    href="/admin"
-                    className="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors"
-                  >
+                  <Link href="/admin" className="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
                     Admin
                   </Link>
                 )}
@@ -103,33 +105,31 @@ function PortalContent() {
               </nav>
             </div>
 
-            <div className="flex flex-col items-center md:hidden">
-              <Link href="/" className="drop-shadow-[0_0_40px_rgba(13,242,242,0.25)]">
+            {/* Mobile header */}
+            <div className="flex flex-col items-center md:hidden gap-3">
+              <Link href="/portal" className="drop-shadow-[0_0_40px_rgba(13,242,242,0.25)]">
                 <Image
                   src="/logo/tokorel-logo-transparent.png"
                   alt="Tokorel Series"
-                  width={400}
-                  height={160}
-                  className="object-contain h-28 w-auto"
+                  width={300}
+                  height={120}
+                  className="object-contain h-20 w-auto"
                   priority
                 />
               </Link>
-              <nav className="flex items-center gap-6 mt-2">
-                <Link href="/" className="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
-                  Home
-                </Link>
+              <nav className="flex items-center gap-6">
                 <Link href="/portal" className="text-xs font-medium uppercase tracking-widest text-primary">
-                  Books
+                  Dashboard
+                </Link>
+                <Link href="/portal-downloads" className="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
+                  Downloads
                 </Link>
                 {user?.role === "admin" && (
                   <Link href="/admin" className="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
                     Admin
                   </Link>
                 )}
-                <button
-                  onClick={logout}
-                  className="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors cursor-pointer"
-                >
+                <button onClick={logout} className="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors cursor-pointer">
                   Logout
                 </button>
               </nav>
@@ -137,172 +137,264 @@ function PortalContent() {
           </div>
         </header>
 
-        <main className="flex-1 max-w-6xl mx-auto w-full px-6 py-12 space-y-24">
-          <section className="text-center space-y-6">
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-slate-100">
-              Welcome to the{" "}
-              <span className="text-primary">Tokorel Universe</span>
-            </h2>
-            <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-              Your transmission has been received. Dive into the origins of the
-              most acclaimed sci-fi epic of the decade.
-            </p>
-          </section>
-
-          <CountdownTimer />
-
-          <section className="grid md:grid-cols-2 gap-12 items-center bg-primary/5 rounded-xl p-8 md:p-12 border border-primary/10">
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-primary/20 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000" />
-              <Image
-                src="/images/book-covers/the-sentence-tokorel-prequel.png"
-                alt="Book cover of The Sentence — A Tokorel Prequel"
-                width={500}
-                height={750}
-                className="relative rounded-lg shadow-2xl w-full aspect-[2/3] object-cover border border-primary/20"
-                priority
-              />
-            </div>
-
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <span className="text-primary font-bold tracking-widest text-xs uppercase">
-                  Exclusive Prequel Novella
-                </span>
-                <h3 className="text-3xl md:text-5xl font-bold text-slate-100">
-                  The Sentence
-                </h3>
-                <p className="text-slate-400 leading-relaxed text-lg">
-                  In the shadow of the twin moons, a forbidden alliance
-                  threatens the core of the Tokorel System. Discover the prequel
-                  story that sets the stage for the epic saga.
+        <main className="flex-1 max-w-7xl mx-auto w-full px-6 py-12 md:py-16">
+          {/* Welcome & Status Bar */}
+          <div
+            className="mb-16 transition-all duration-700"
+            style={{ opacity: mounted ? 1 : 0, transform: mounted ? "translateY(0)" : "translateY(20px)" }}
+          >
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-4">
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="inline-block w-2 h-2 rounded-full bg-primary animate-pulse" />
+                  <span className="text-xs uppercase tracking-[0.3em] text-primary/70 font-bold">
+                    System Active
+                  </span>
+                </div>
+                <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-slate-100">
+                  Welcome back,{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+                    {user?.name?.split(" ")[0] || "Agent"}
+                  </span>
+                </h1>
+                <p className="text-slate-400 mt-3 text-lg max-w-xl">
+                  Your command center for the Tokorel Universe. Access archives, explore the star map, and review classified dossiers.
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href={EPUB_URL}
-                  download
-                  className="flex-1 bg-primary text-bg-dark h-14 rounded-lg font-bold flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform"
-                >
-                  <DownloadIcon />
-                  Download EPUB
-                </a>
-                <a
-                  href={PDF_URL}
-                  download
-                  className="flex-1 border border-primary/30 text-primary h-14 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-primary/10 transition-colors"
-                >
-                  <PdfIcon />
-                  Download PDF
-                </a>
+              <div className="flex items-center gap-6 text-xs">
+                <div className="glass-panel px-4 py-2.5 rounded-lg flex items-center gap-2.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  <span className="text-slate-400 uppercase tracking-widest">
+                    Clearance:
+                  </span>
+                  <span className="text-primary font-bold uppercase tracking-widest">
+                    {user?.role === "admin" ? "Omega" : "Standard"}
+                  </span>
+                </div>
               </div>
             </div>
-          </section>
 
-          <section className="relative py-20 px-8 rounded-2xl border border-primary/10 bg-gradient-to-br from-primary/5 to-transparent overflow-hidden">
-            <div className="absolute inset-0 parchment-texture" />
-            <div className="relative z-10 text-center space-y-8">
-              <span className="text-primary text-5xl opacity-50">&#10022;</span>
-              <blockquote className="text-2xl md:text-4xl font-light italic text-primary/90 max-w-3xl mx-auto leading-relaxed">
-                &ldquo;From the blood of two enemies, a bridge shall be
-                born.&rdquo;
+            <div className="h-px bg-gradient-to-r from-primary/40 via-primary/10 to-transparent" />
+          </div>
+
+          {/* Dashboard Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-16">
+            {SECTIONS.map((section, i) => (
+              <DashboardCard key={section.id} section={section} index={i} mounted={mounted} />
+            ))}
+          </div>
+
+          {/* Prophecy Banner */}
+          <div
+            className="relative overflow-hidden rounded-2xl border border-primary/10 transition-all duration-700 delay-500"
+            style={{ opacity: mounted ? 1 : 0, transform: mounted ? "translateY(0)" : "translateY(20px)" }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.06] via-transparent to-accent/[0.04]" />
+            <div className="absolute inset-0 parchment-texture opacity-50" />
+
+            <div className="relative z-10 py-16 px-8 text-center">
+              <span className="text-primary text-4xl opacity-40">&#10022;</span>
+              <blockquote className="mt-6 text-xl md:text-3xl font-light italic text-primary/80 max-w-2xl mx-auto leading-relaxed">
+                &ldquo;From the blood of two enemies, a bridge shall be born.&rdquo;
               </blockquote>
-              <div className="w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
-              <p className="text-xs uppercase tracking-[0.4em] text-primary/40 font-bold">
+              <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent mx-auto mt-6" />
+              <p className="text-xs uppercase tracking-[0.4em] text-primary/30 font-bold mt-4">
                 The Fragment of Khizara
               </p>
             </div>
-          </section>
+          </div>
 
-          <section className="space-y-12">
-            <div className="flex items-end justify-between border-b border-primary/10 pb-6">
-              <h3 className="text-3xl font-bold text-slate-100">The Books</h3>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {BOOKS.map((book) => {
-                const Card = (
-                  <div
-                    className={`bg-primary/5 border border-primary/10 p-6 rounded-xl hover:bg-primary/10 transition-all group ${book.href ? "cursor-pointer" : ""}`}
-                  >
-                    <div className="aspect-[2/3] mb-6 rounded shadow-lg overflow-hidden border border-primary/20">
-                      <Image
-                        src={book.cover}
-                        alt={`Book cover: ${book.title}`}
-                        width={400}
-                        height={600}
-                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                      />
-                    </div>
-                    <h4 className="text-xl font-bold text-slate-100 mb-2">
-                      {book.title}
-                    </h4>
-                    <p className="text-sm text-slate-400 mb-4 line-clamp-3">
-                      {book.description}
-                    </p>
-                    <span className="text-xs text-primary font-bold tracking-widest uppercase">
-                      {book.label}
-                    </span>
-                    {book.href && (
-                      <span className="block mt-3 text-xs text-accent font-medium tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-                        Read on Kindle &rarr;
-                      </span>
-                    )}
-                  </div>
-                );
-
-                return book.href ? (
-                  <a key={book.title} href={book.href} target="_blank" rel="noopener noreferrer">
-                    {Card}
-                  </a>
-                ) : (
-                  <div key={book.title}>{Card}</div>
-                );
-              })}
-            </div>
-          </section>
-
-          <section className="text-center py-24 bg-gradient-to-t from-primary/10 to-transparent rounded-3xl border border-primary/5">
-            <h3 className="text-3xl md:text-5xl font-bold text-slate-100 mb-8">
-              Continue the Journey
-            </h3>
-            <p className="text-slate-400 max-w-xl mx-auto mb-10 text-lg">
-              Don&apos;t stop at the prologue. The true fate of the Tokorel
-              system awaits in the main series.
-            </p>
-            <Link
-              href="/"
-              className="inline-block bg-primary text-bg-dark px-12 py-5 rounded-xl font-bold text-xl hover:scale-105 transition-all shadow-[0_0_30px_rgba(13,242,242,0.3)]"
-            >
-              Back to Home
-            </Link>
-          </section>
+          {/* System Telemetry Footer */}
+          <div
+            className="mt-16 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-[10px] uppercase tracking-[0.3em] text-slate-600 transition-all duration-700 delay-700"
+            style={{ opacity: mounted ? 1 : 0 }}
+          >
+            <span className="flex items-center gap-2">
+              <span className="w-1 h-1 rounded-full bg-primary/40" />
+              Encrypted Connection
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-1 h-1 rounded-full bg-primary/40" />
+              Archives Synced
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="w-1 h-1 rounded-full bg-primary/40" />
+              Tokorel System Online
+            </span>
+          </div>
         </main>
-
-        <Footer />
       </div>
     </>
   );
 }
 
-function DownloadIcon() {
+interface DashboardCardProps {
+  section: typeof SECTIONS[number];
+  index: number;
+  mounted: boolean;
+}
+
+function DashboardCard({ section, index, mounted }: DashboardCardProps) {
+  const [hovered, setHovered] = useState(false);
+  const isActive = section.status === "ONLINE";
+  const Icon = section.icon;
+
+  const card = (
+    <div
+      className={`group relative overflow-hidden rounded-xl border transition-all duration-500 h-full ${
+        isActive
+          ? "border-primary/20 hover:border-primary/50 hover:shadow-[0_0_40px_rgba(13,242,242,0.1)] cursor-pointer"
+          : "border-primary/10 opacity-70"
+      }`}
+      style={{
+        transitionDelay: `${150 + index * 100}ms`,
+        opacity: mounted ? 1 : 0,
+        transform: mounted ? "translateY(0)" : "translateY(30px)",
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Card background layers */}
+      <div className="absolute inset-0 bg-gradient-to-br from-card-dark to-bg-dark" />
+      <div
+        className={`absolute inset-0 transition-opacity duration-500 ${
+          hovered && isActive ? "opacity-100" : "opacity-0"
+        }`}
+        style={{
+          background: section.color === "accent"
+            ? "radial-gradient(circle at 50% 0%, rgba(255,179,71,0.08) 0%, transparent 70%)"
+            : "radial-gradient(circle at 50% 0%, rgba(13,242,242,0.08) 0%, transparent 70%)",
+        }}
+      />
+
+      {/* Scan line animation on hover */}
+      {isActive && (
+        <div
+          className={`absolute left-0 right-0 h-px transition-all duration-1000 ease-out ${
+            hovered ? "opacity-60" : "opacity-0"
+          }`}
+          style={{
+            top: hovered ? "100%" : "0%",
+            background: section.color === "accent"
+              ? "linear-gradient(90deg, transparent, rgba(255,179,71,0.5), transparent)"
+              : "linear-gradient(90deg, transparent, rgba(13,242,242,0.5), transparent)",
+          }}
+        />
+      )}
+
+      <div className="relative z-10 p-8 flex flex-col h-full">
+        {/* Status + Icon row */}
+        <div className="flex items-start justify-between mb-6">
+          <div
+            className={`w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-500 ${
+              isActive
+                ? hovered
+                  ? section.color === "accent"
+                    ? "bg-accent/20 shadow-[0_0_20px_rgba(255,179,71,0.2)]"
+                    : "bg-primary/20 shadow-[0_0_20px_rgba(13,242,242,0.2)]"
+                  : "bg-primary/10"
+                : "bg-primary/5"
+            }`}
+          >
+            <Icon active={isActive} color={section.color} />
+          </div>
+          <span
+            className={`text-[10px] font-bold uppercase tracking-[0.2em] px-3 py-1.5 rounded-full border ${
+              isActive
+                ? "text-primary border-primary/30 bg-primary/5"
+                : "text-slate-500 border-slate-700 bg-slate-800/50"
+            }`}
+          >
+            {section.status}
+          </span>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1">
+          <p className={`text-xs uppercase tracking-[0.2em] font-bold mb-2 ${
+            section.color === "accent" ? "text-accent/70" : "text-primary/70"
+          }`}>
+            {section.subtitle}
+          </p>
+          <h3 className="text-2xl font-bold text-slate-100 mb-3">
+            {section.title}
+          </h3>
+          <p className="text-sm text-slate-400 leading-relaxed">
+            {section.description}
+          </p>
+        </div>
+
+        {/* Bottom action */}
+        <div className="mt-8 pt-6 border-t border-primary/10">
+          {isActive ? (
+            <div className="flex items-center justify-between">
+              <span className="text-xs uppercase tracking-widest text-primary font-bold">
+                Enter
+              </span>
+              <span
+                className={`text-primary transition-transform duration-300 ${
+                  hovered ? "translate-x-1" : ""
+                }`}
+              >
+                &rarr;
+              </span>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-slate-600" />
+              <span className="text-xs uppercase tracking-widest text-slate-600 font-medium">
+                In Development
+              </span>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+
+  if (isActive) {
+    return <Link href={section.href} className="block h-full">{card}</Link>;
+  }
+  return card;
+}
+
+function ArchiveIcon({ active, color }: { active: boolean; color: string }) {
+  const c = active
+    ? color === "accent" ? "#ffb347" : "#0df2f2"
+    : "#475569";
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-      <polyline points="7 10 12 15 17 10" />
-      <line x1="12" y1="15" x2="12" y2="3" />
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 8v13H3V8" />
+      <path d="M1 3h22v5H1z" />
+      <path d="M10 12h4" />
     </svg>
   );
 }
 
-function PdfIcon() {
+function MapIcon({ active, color }: { active: boolean; color: string }) {
+  const c = active
+    ? color === "accent" ? "#ffb347" : "#0df2f2"
+    : "#475569";
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-      <polyline points="14 2 14 8 20 8" />
-      <line x1="16" y1="13" x2="8" y2="13" />
-      <line x1="16" y1="17" x2="8" y2="17" />
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  );
+}
+
+function UsersIcon({ active, color }: { active: boolean; color: string }) {
+  const c = active
+    ? color === "accent" ? "#ffb347" : "#0df2f2"
+    : "#475569";
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
     </svg>
   );
 }
