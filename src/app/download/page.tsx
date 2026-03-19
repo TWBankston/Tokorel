@@ -109,6 +109,9 @@ export default function DownloadPage() {
             </p>
           </section>
 
+          {/* Countdown Timer */}
+          <CountdownTimer />
+
           {/* Download Section */}
           <section className="grid md:grid-cols-2 gap-12 items-center bg-primary/5 rounded-xl p-8 md:p-12 border border-primary/10">
             <div className="relative group">
@@ -158,9 +161,6 @@ export default function DownloadPage() {
               </div>
             </div>
           </section>
-
-          {/* Countdown Timer */}
-          <CountdownTimer />
 
           {/* Prophecy Fragment */}
           <section className="relative py-20 px-8 rounded-2xl border border-primary/10 bg-gradient-to-br from-primary/5 to-transparent overflow-hidden">
