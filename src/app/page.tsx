@@ -9,50 +9,55 @@ import AudioPlayer from "@/components/AudioPlayer";
 export default function LandingPage() {
   return (
     <>
-      {/* Grid Overlay */}
-      <div className="fixed inset-0 grid-overlay pointer-events-none z-0" />
-
-      <div className="relative z-10 flex flex-col min-h-screen">
-        <Header />
-
-        {/* ── Hero Section ──────────────────────────── */}
-        <main className="flex-1 flex flex-col items-center justify-center px-4 py-20 relative overflow-hidden">
-          {/* Background layers */}
-          <div className="absolute inset-0 -z-10">
+      <div className="relative flex flex-col min-h-screen">
+        {/* Galaxy background covering header + hero from the very top */}
+        <div className="relative overflow-hidden">
+          <div className="absolute inset-0 z-0">
             <ParticleCanvas />
             <div className="nebula-layer" />
-            <div className="absolute inset-0 bg-gradient-to-b from-bg-dark via-transparent to-bg-dark" />
+            <div className="absolute inset-0 bg-gradient-to-b from-bg-dark/30 via-transparent to-bg-dark" />
           </div>
 
-          <div className="max-w-4xl text-center space-y-8">
-            <h2 className="text-6xl md:text-8xl font-bold tracking-tighter text-slate-100 glow-text leading-[0.9]">
-              ENTER THE <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-accent">
-                TOKOREL UNIVERSE
-              </span>
-            </h2>
+          <div className="relative z-10">
+            <Header />
 
-            <p className="text-lg md:text-2xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
-              Two civilizations divided for 200 years. <br />
-              <span className="text-accent/80">
-                One prophecy that could change everything.
-              </span>
-            </p>
+            {/* ── Hero Section ──────────────────────────── */}
+            <main className="flex-1 flex flex-col items-center justify-center px-4 py-20">
+              <div className="max-w-4xl text-center space-y-8">
+                <h2 className="text-6xl md:text-8xl font-bold tracking-tighter text-slate-100 glow-text leading-[0.9]">
+                  ENTER THE <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-accent">
+                    TOKOREL UNIVERSE
+                  </span>
+                </h2>
 
-            <SignupForm variant="hero" />
+                <p className="text-lg md:text-2xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
+                  Two civilizations divided for 200 years. <br />
+                  <span className="text-accent/80">
+                    One prophecy that could change everything.
+                  </span>
+                </p>
 
-            <p className="text-slate-400 text-sm mt-4 font-medium">
-              Readers who join the archives receive early lore, discoveries, and new Tokorel stories.
-            </p>
-            <p className="text-slate-500 text-sm font-medium italic">
-              Receive immediate transmission of &lsquo;The Sentence&rsquo;
-              prequel upon arrival.
-            </p>
+                <SignupForm variant="hero" />
+
+                <p className="text-slate-400 text-sm mt-4 font-medium">
+                  Readers who join the archives receive early lore, discoveries, and new Tokorel stories.
+                </p>
+                <p className="text-slate-500 text-sm font-medium italic">
+                  Receive immediate transmission of &lsquo;The Sentence&rsquo;
+                  prequel upon arrival.
+                </p>
+              </div>
+            </main>
           </div>
-        </main>
+        </div>
+
+        {/* Grid starts below the hero */}
+        <div className="relative">
+          <div className="absolute inset-0 grid-overlay pointer-events-none z-0" />
 
         {/* ── Forbidden Connection Section ──────────── */}
-        <section className="py-24 px-6 relative">
+        <section className="py-24 px-6 relative z-10">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Book Cover with Beam Effect */}
             <div className="relative group">
@@ -93,7 +98,7 @@ export default function LandingPage() {
         </section>
 
         {/* ── Final CTA Section ────────────────────── */}
-        <section className="py-32 px-6 relative text-center">
+        <section className="py-32 px-6 relative z-10 text-center">
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(13,242,242,0.1)_0%,transparent_70%)]" />
 
           <div className="max-w-3xl mx-auto space-y-10">
@@ -121,6 +126,7 @@ export default function LandingPage() {
         </section>
 
         <Footer />
+        </div>
       </div>
 
       {/* Background Ambient Elements */}

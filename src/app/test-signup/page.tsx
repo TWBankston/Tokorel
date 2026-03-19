@@ -65,30 +65,32 @@ function TestSignupContent() {
 
   return (
     <>
-      <div className="fixed inset-0 grid-overlay pointer-events-none z-0" />
-
-      <div className="relative z-10 flex flex-col min-h-screen">
-        <header className="relative z-30 w-full pt-6 pb-4">
-          <div className="flex justify-center">
-            <Link href="/" className="drop-shadow-[0_0_40px_rgba(13,242,242,0.25)]">
-              <Image
-                src="/logo/tokorel-logo-transparent.png"
-                alt="Tokorel Series"
-                width={500}
-                height={200}
-                className="object-contain h-40 w-auto"
-                priority
-              />
-            </Link>
-          </div>
-        </header>
-
-        <main className="flex-1 flex flex-col items-center justify-center px-4 py-20 relative overflow-hidden">
-          <div className="absolute inset-0 -z-10">
+      <div className="relative flex flex-col min-h-screen">
+        {/* Galaxy background covering header + hero */}
+        <div className="relative overflow-hidden">
+          <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(13,242,242,0.08)_0%,transparent_60%)]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-bg-dark/30 via-transparent to-bg-dark" />
           </div>
 
-          <div className="max-w-4xl text-center space-y-8">
+          <div className="relative z-10">
+            <header className="relative w-full pt-6 pb-4">
+              <div className="flex justify-center">
+                <Link href="/" className="drop-shadow-[0_0_40px_rgba(13,242,242,0.25)]">
+                  <Image
+                    src="/logo/tokorel-logo-transparent.png"
+                    alt="Tokorel Series"
+                    width={500}
+                    height={200}
+                    className="object-contain h-40 w-auto"
+                    priority
+                  />
+                </Link>
+              </div>
+            </header>
+
+            <main className="flex-1 flex flex-col items-center justify-center px-4 py-20">
+              <div className="max-w-4xl text-center space-y-8">
             <h2 className="text-6xl md:text-8xl font-bold tracking-tighter text-slate-100 glow-text leading-[0.9]">
               ENTER THE <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-accent">
@@ -160,10 +162,16 @@ function TestSignupContent() {
             <p className="text-slate-400 text-sm mt-4 font-medium">
               Create your account to access the full Tokorel Universe archives.
             </p>
+              </div>
+            </main>
           </div>
-        </main>
+        </div>
 
-        <Footer />
+        {/* Grid starts below the hero */}
+        <div className="relative">
+          <div className="absolute inset-0 grid-overlay pointer-events-none z-0" />
+          <Footer />
+        </div>
       </div>
 
       <div className="fixed top-0 right-0 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
