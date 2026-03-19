@@ -5,7 +5,7 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 import CountdownTimer from "@/components/CountdownTimer";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import { useAuth } from "@/context/AuthContext";
+import { AuthProvider, useAuth } from "@/context/AuthContext";
 
 const EPUB_URL =
   "https://assets.zyrosite.com/bIWAzaiH02VksK8O/tokorel-prequels-WCYNOmZUuEPAsb6X.epub";
@@ -40,9 +40,11 @@ const BOOKS = [
 
 export default function PortalPage() {
   return (
-    <ProtectedRoute>
-      <PortalContent />
-    </ProtectedRoute>
+    <AuthProvider>
+      <ProtectedRoute>
+        <PortalContent />
+      </ProtectedRoute>
+    </AuthProvider>
   );
 }
 

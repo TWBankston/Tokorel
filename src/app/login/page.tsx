@@ -4,9 +4,17 @@ import { useState, type FormEvent, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { useAuth } from "@/context/AuthContext";
+import { AuthProvider, useAuth } from "@/context/AuthContext";
 
 export default function LoginPage() {
+  return (
+    <AuthProvider>
+      <LoginContent />
+    </AuthProvider>
+  );
+}
+
+function LoginContent() {
   const { user, loading, login } = useAuth();
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -127,3 +135,4 @@ export default function LoginPage() {
     </>
   );
 }
+

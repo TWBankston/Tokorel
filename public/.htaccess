@@ -14,23 +14,16 @@ AddHandler application/x-httpd-php .php
     RewriteEngine On
     RewriteBase /
 
+    # Page rewrites (must come before the directory check since
+    # Next.js generates both page.html and page/ directories)
+    RewriteRule ^download$ /download.html [L]
+    RewriteRule ^login$ /login.html [L]
+    RewriteRule ^portal$ /portal.html [L]
+    RewriteRule ^admin$ /admin.html [L]
+    RewriteRule ^subscribe$ /subscribe.php [L]
+
     # Don't rewrite actual files or directories
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteRule ^ - [L]
-
-    # Rewrite /download to /download.html
-    RewriteRule ^download$ /download.html [L]
-
-    # Rewrite /subscribe to /subscribe.php
-    RewriteRule ^subscribe$ /subscribe.php [L]
-
-    # Rewrite /login to /login.html
-    RewriteRule ^login$ /login.html [L]
-
-    # Rewrite /portal to /portal.html
-    RewriteRule ^portal$ /portal.html [L]
-
-    # Rewrite /admin to /admin.html
-    RewriteRule ^admin$ /admin.html [L]
 </IfModule>

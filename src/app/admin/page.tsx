@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import { useAuth } from "@/context/AuthContext";
+import { AuthProvider, useAuth } from "@/context/AuthContext";
 
 interface UserRecord {
   id: number;
@@ -17,9 +17,11 @@ interface UserRecord {
 
 export default function AdminPage() {
   return (
-    <ProtectedRoute requiredRole="admin">
-      <AdminContent />
-    </ProtectedRoute>
+    <AuthProvider>
+      <ProtectedRoute requiredRole="admin">
+        <AdminContent />
+      </ProtectedRoute>
+    </AuthProvider>
   );
 }
 

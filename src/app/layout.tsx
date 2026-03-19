@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import Script from "next/script";
-import { AuthProvider } from "@/context/AuthContext";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -51,9 +50,7 @@ export default function RootLayout({
         </noscript>
       </head>
       <body className={`${spaceGrotesk.variable} font-[family-name:var(--font-display)] antialiased overflow-x-hidden`}>
-        <AuthProvider>
         {children}
-        </AuthProvider>
         <Script id="meta-pixel" strategy="afterInteractive">
           {`!function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
