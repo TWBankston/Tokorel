@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
+import { useSoundFX } from "@/hooks/useSoundFX";
+import SFXToggle from "@/components/SFXToggle";
 
 export default function PortalPage() {
   return (
@@ -51,6 +53,7 @@ const SECTIONS = [
 
 function DashboardContent() {
   const { user, logout } = useAuth();
+  const { play } = useSoundFX();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -187,7 +190,7 @@ function DashboardContent() {
           {/* Dashboard Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-16">
             {SECTIONS.map((section, i) => (
-              <DashboardCard key={section.id} section={section} index={i} mounted={mounted} />
+              <DashboardCard key={section.id} section={section} index={i} mounted={mounted} onHover={() => play("cardHover")} onClick={() => play("navigate")} />
             ))}
           </div>
 
@@ -231,6 +234,8 @@ function DashboardContent() {
           </div>
         </main>
       </div>
+
+      <SFXToggle />
     </>
   );
 }
@@ -239,9 +244,11 @@ interface DashboardCardProps {
   section: typeof SECTIONS[number];
   index: number;
   mounted: boolean;
+  onHover: () => void;
+  onClick: () => void;
 }
 
-function DashboardCard({ section, index, mounted }: DashboardCardProps) {
+function DashboardCard({ section, index, mounted, onHover, onClick }: DashboardCardProps) {
   const [hovered, setHovered] = useState(false);
   const isActive = section.status === "ONLINE";
   const Icon = section.icon;
@@ -258,7 +265,7 @@ function DashboardCard({ section, index, mounted }: DashboardCardProps) {
         opacity: mounted ? 1 : 0,
         transform: mounted ? "translateY(0)" : "translateY(30px)",
       }}
-      onMouseEnter={() => setHovered(true)}
+      onMouseEnter={() => { setHovered(true); if (isActive) onHover(); }}
       onMouseLeave={() => setHovered(false)}
     >
       {/* Card background layers */}
@@ -360,7 +367,7 @@ function DashboardCard({ section, index, mounted }: DashboardCardProps) {
   );
 
   if (isActive) {
-    return <Link href={section.href} className="block h-full">{card}</Link>;
+    return <Link href={section.href} className="block h-full" onClick={onClick}>{card}</Link>;
   }
   return card;
 }

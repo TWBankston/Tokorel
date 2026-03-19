@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
+import { useSoundFX } from "@/hooks/useSoundFX";
+import SFXToggle from "@/components/SFXToggle";
 
 export default function PortalDossiersPage() {
   return (
@@ -157,6 +159,7 @@ const CHARACTERS: CharacterData[] = [
 
 function DossiersContent() {
   const { user, logout } = useAuth();
+  const { play } = useSoundFX();
   const [mounted, setMounted] = useState(false);
   const [selectedCharacter, setSelectedCharacter] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState("background");
@@ -167,21 +170,23 @@ function DossiersContent() {
   }, []);
 
   const handleSelectCharacter = useCallback((id: string) => {
+    play("dossierOpen");
     setScanlineActive(true);
     setTimeout(() => {
       setSelectedCharacter(id);
       setActiveTab("background");
       setScanlineActive(false);
     }, 300);
-  }, []);
+  }, [play]);
 
   const handleClose = useCallback(() => {
+    play("dossierClose");
     setScanlineActive(true);
     setTimeout(() => {
       setSelectedCharacter(null);
       setScanlineActive(false);
     }, 300);
-  }, []);
+  }, [play]);
 
   const selected = CHARACTERS.find((c) => c.id === selectedCharacter);
 
@@ -307,6 +312,7 @@ function DossiersContent() {
                   index={i}
                   mounted={mounted}
                   onSelect={handleSelectCharacter}
+                  onHover={() => play("cardHover")}
                 />
               ))}
             </div>
@@ -314,7 +320,7 @@ function DossiersContent() {
             <DossierView
               character={selected}
               activeTab={activeTab}
-              setActiveTab={setActiveTab}
+              setActiveTab={(tab) => { play("tabSwitch"); setActiveTab(tab); }}
               onClose={handleClose}
             />
           ) : null}
@@ -325,6 +331,8 @@ function DossiersContent() {
           )}
         </main>
       </div>
+
+      <SFXToggle />
     </>
   );
 }
@@ -343,9 +351,10 @@ interface CharacterCardProps {
   index: number;
   mounted: boolean;
   onSelect: (id: string) => void;
+  onHover: () => void;
 }
 
-function CharacterCard({ character, index, mounted, onSelect }: CharacterCardProps) {
+function CharacterCard({ character, index, mounted, onSelect, onHover }: CharacterCardProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -364,7 +373,7 @@ function CharacterCard({ character, index, mounted, onSelect }: CharacterCardPro
           : "none",
         borderColor: hovered ? `${character.accentColor}99` : undefined,
       }}
-      onMouseEnter={() => setHovered(true)}
+      onMouseEnter={() => { setHovered(true); onHover(); }}
       onMouseLeave={() => setHovered(false)}
       onClick={() => onSelect(character.id)}
     >
