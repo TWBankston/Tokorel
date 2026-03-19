@@ -45,7 +45,7 @@ const CHARACTERS: CharacterData[] = [
     species: "Half-Terran / Half-Khizaran",
     status: "ACTIVE",
     threatLevel: "HIGH",
-    image: null,
+    image: "/images/characters/linsora.png",
     accentColor: "#0df2f2",
     bio: [
       "Born on Khizara to a Terran father and Khizaran mother, Linsora defies the typical Khizaran appearance. While most Khizarans are tall, thin, with blue eyes and clawed hands, Linsora inherited her green eyes, auburn hair, and short stature from her father.",
@@ -104,7 +104,7 @@ const CHARACTERS: CharacterData[] = [
     species: "Tokorellan",
     status: "ACTIVE",
     threatLevel: "SEVERE",
-    image: null,
+    image: "/images/characters/permac.png",
     accentColor: "#ffb347",
     bio: [
       "Permac Sude is a Tokorellan — the sworn enemy of Khizara. The two planets became enemies after the Great Battling 200 years ago. Because Tokorellans are descended from Khizarans, they don't differ in appearance.",
