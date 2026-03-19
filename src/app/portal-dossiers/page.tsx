@@ -40,7 +40,7 @@ const CHARACTERS: CharacterData[] = [
   {
     id: "linsora",
     name: "Linsora",
-    fullName: "Linsora Anslem",
+    fullName: "Linsora Anselm",
     title: "Khizaran Vanguard",
     classification: "Vanguard",
     origin: "Khizara",
@@ -50,39 +50,39 @@ const CHARACTERS: CharacterData[] = [
     image: "/images/characters/linsora.png",
     accentColor: "#0df2f2",
     bio: [
-      "Born on Khizara to a Terran father and Khizaran mother, Linsora defies the typical Khizaran appearance. While most Khizarans are tall, thin, with blue eyes and clawed hands, Linsora inherited her green eyes, auburn hair, and short stature from her father.",
-      "A survivor from birth — a mysterious ailment almost claimed her life as a child, but she miraculously pulled through. Her resilience was tested further by the torment of her older half-brother, Yokosh Kohl.",
-      "After serving in the Khizaran Navy, Linsora left her world when situations became untenable. Like all Khizarans, she carries knives and settles all disputes using them.",
+      "Linsora was born on Khizara, a world of ancient traditions and deep-rooted cultural pride. While most Khizarans are tall and slender, with light blue eyes and dark hair, Linsora stands apart. She is not a full Khizaran.",
+      "The blend of two worlds left its mark on Linsora. She was shorter than most Khizarans, with auburn hair and vivid green eyes. Her father's gift to her. Her temper, however, was something else entirely. Fierce, quick, and unyielding — it was purely Khizaran.",
+      "Like all Khizarans, Linsora harbors a deep, instinctive distrust of Tokorellans. A prejudice woven into her people's history and her own bones.",
     ],
     stats: [
       { label: "Combat Proficiency", value: 96 },
-      { label: "Tactical Intelligence", value: 91 },
+      { label: "Archaeological Instinct", value: 93 },
       { label: "Resilience", value: 98 },
-      { label: "Knife Mastery", value: 100, color: "#ffb347" },
+      { label: "Ancient Echoes", value: 100, color: "#ffb347" },
     ],
     traits: [
       { label: "Blade Expert", icon: "⚔" },
-      { label: "Navy Veteran", icon: "⚓" },
-      { label: "Survivor", icon: "✦" },
-      { label: "Khizaran Heritage", icon: "◈" },
+      { label: "Echo Listener", icon: "✦" },
+      { label: "Archaeologist", icon: "◈" },
+      { label: "Half-Terran", icon: "⊕" },
     ],
     tabs: [
       {
         id: "background",
         label: "Background",
         content: [
-          "Robert Anselm, an archaeologist, came to Khizara hoping to locate the oldest settlement on the planet. He arrived at a time when Linsora's mother, Belat, had just lost her husband.",
-          "Robert was a patient man and knew Khizaran traditions well. His patience and knowledge paid off when Belat agreed to be his mate, and Linsora was born.",
-          "Growing up as a half-breed on Khizara was never easy. Linsora's appearance set her apart from other Khizarans, and her half-brother Yokosh Kohl made sure she never forgot it.",
+          "Her father, Robert Anselm, was a Terran archaeologist who arrived on Khizara driven by a singular obsession: to uncover the planet's oldest city. While there, he met Linsora's mother, Behlat, a woman still carrying the quiet grief of recent widowhood.",
+          "Over time, warmth grew between them. Though a Terran and a Khizaran made for an unlikely pair, they found unexpected common ground, and their bond deepened into something lasting. From that union, Linsora was born.",
+          "Her relationship with Permac, a Tokorellan, was no exception to her distrust of his kind — it began with friction, suspicion, and no shortage of hostility. Yet prophecies have a way of binding even the most stubborn of enemies. Neither Linsora nor Permac believes in such things, of course. And yet, one must wonder.",
         ],
       },
       {
         id: "abilities",
         label: "Abilities",
         content: [
-          "Linsora is a master of the Khizaran blade arts. Like all Khizarans, she carries knives at all times and uses them to settle disputes — a tradition deeply embedded in Khizaran culture.",
-          "Her time in the Khizaran Navy honed her combat skills and tactical thinking. She is a formidable fighter and a natural strategist.",
-          "Despite her small stature compared to full-blooded Khizarans, Linsora compensates with speed, precision, and a fierce determination that has kept her alive in a galaxy full of threats.",
+          "As she grew older, Linsora accompanied her father on archaeological digs and discovered something extraordinary within herself. She could hear ancient voices. Not memories, exactly, but echoes — fragments of the civilizations that had once thrived in those places, faint and haunting.",
+          "It was this rare gift that led Linsora and her father to their greatest discovery: Pak'bor, the oldest known settlement on Khizara.",
+          "Like all Khizarans, Linsora carries knives and settles disputes using them — a tradition deeply embedded in Khizaran culture. Despite her small stature compared to full-blooded Khizarans, she compensates with speed, precision, and a fierce determination.",
         ],
       },
       {
@@ -90,8 +90,8 @@ const CHARACTERS: CharacterData[] = [
         label: "Intelligence",
         content: [
           "CLASSIFICATION: RESTRICTED",
-          "Subject demonstrates exceptional survival instincts. The mysterious childhood ailment and subsequent recovery suggest possible latent abilities not yet fully understood.",
-          "Departure from Khizara flagged as potentially related to escalating political tensions. Current whereabouts suggest deep-space operations outside standard jurisdictions.",
+          "Subject possesses a confirmed anomalous ability to perceive residual psychic impressions at archaeological sites — referred to internally as 'echo listening.' This ability led directly to the discovery of Pak'bor. Full extent of this capability remains under assessment.",
+          "Subject's mixed heritage (Terran/Khizaran) and relationship with known Tokorellan operative Permac Sude flagged for ongoing monitoring. Prophecy-related intelligence suggests both subjects may be central to events of galactic significance.",
         ],
       },
     ],
