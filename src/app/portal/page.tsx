@@ -42,9 +42,9 @@ const SECTIONS = [
     title: "Dossier Files",
     subtitle: "Character Bios",
     description: "Classified intelligence on every key figure — alliances, backgrounds, and hidden agendas across the saga.",
-    href: "#",
+    href: "/portal-dossiers",
     icon: UsersIcon,
-    status: "COMING SOON",
+    status: "ONLINE",
     color: "primary",
   },
 ];
@@ -76,6 +76,9 @@ function DashboardContent() {
                 </Link>
                 <Link href="/portal-downloads" className="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
                   Downloads
+                </Link>
+                <Link href="/portal-dossiers" className="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
+                  Dossiers
                 </Link>
               </nav>
 
@@ -123,6 +126,9 @@ function DashboardContent() {
                 </Link>
                 <Link href="/portal-downloads" className="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
                   Downloads
+                </Link>
+                <Link href="/portal-dossiers" className="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
+                  Dossiers
                 </Link>
                 {user?.role === "admin" && (
                   <Link href="/admin" className="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">

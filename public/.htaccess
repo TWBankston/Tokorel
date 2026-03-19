@@ -21,6 +21,7 @@ AddHandler application/x-httpd-php .php
     RewriteRule ^portal$ /portal.html [L]
     RewriteRule ^portal-downloads$ /portal-downloads.html [L]
     RewriteRule ^test-signup$ /test-signup.html [L]
+    RewriteRule ^portal-dossiers$ /portal-dossiers.html [L]
     RewriteRule ^admin$ /admin.html [L]
     RewriteRule ^subscribe$ /subscribe.php [L]
 

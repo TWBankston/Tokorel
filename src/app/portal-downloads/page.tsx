@@ -65,6 +65,9 @@ function DownloadsContent() {
                 <Link href="/portal-downloads" className="text-sm font-medium uppercase tracking-widest text-primary">
                   Downloads
                 </Link>
+                <Link href="/portal-dossiers" className="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
+                  Dossiers
+                </Link>
               </nav>
 
               <Link href="/portal" className="flex justify-center drop-shadow-[0_0_40px_rgba(13,242,242,0.25)]">
@@ -110,6 +113,9 @@ function DownloadsContent() {
                 </Link>
                 <Link href="/portal-downloads" className="text-xs font-medium uppercase tracking-widest text-primary">
                   Downloads
+                </Link>
+                <Link href="/portal-dossiers" className="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
+                  Dossiers
                 </Link>
                 {user?.role === "admin" && (
                   <Link href="/admin" className="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
