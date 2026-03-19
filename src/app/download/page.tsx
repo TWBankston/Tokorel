@@ -159,6 +159,9 @@ export default function DownloadPage() {
             </div>
           </section>
 
+          {/* Countdown Timer */}
+          <CountdownTimer />
+
           {/* Prophecy Fragment */}
           <section className="relative py-20 px-8 rounded-2xl border border-primary/10 bg-gradient-to-br from-primary/5 to-transparent overflow-hidden">
             <div className="absolute inset-0 parchment-texture" />
@@ -223,9 +226,6 @@ export default function DownloadPage() {
               })}
             </div>
           </section>
-
-          {/* Countdown Timer */}
-          <CountdownTimer />
 
           {/* Continue CTA */}
           <section className="text-center py-24 bg-gradient-to-t from-primary/10 to-transparent rounded-3xl border border-primary/5">

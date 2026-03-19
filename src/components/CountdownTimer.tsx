@@ -23,11 +23,29 @@ function calcTimeLeft(): TimeLeft | null {
   };
 }
 
+function GlobeIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 text-primary mx-auto">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 2a14.5 14.5 0 000 20M12 2a14.5 14.5 0 010 20" />
+      <path d="M2 12h20" />
+    </svg>
+  );
+}
+
+function UsersIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 text-primary mx-auto">
+      <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+    </svg>
+  );
+}
+
 const UPCOMING_FEATURES = [
-  { icon: "🪐", label: "Tokorel Universe Explorer" },
-  { icon: "👤", label: "Character Bios & Dossiers" },
-  { icon: "📜", label: "Lore & Timeline Archives" },
-  { icon: "🔮", label: "Interactive Story Map" },
+  { icon: GlobeIcon, label: "Tokorel Universe Guide" },
+  { icon: UsersIcon, label: "Character Bios & Dossiers" },
 ];
 
 function Digit({ value, label }: { value: number; label: string }) {
@@ -105,13 +123,13 @@ export default function CountdownTimer() {
           </div>
         )}
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
+        <div className="grid grid-cols-2 gap-4 max-w-md mx-auto pt-4">
           {UPCOMING_FEATURES.map((f) => (
             <div
               key={f.label}
-              className="border border-primary/10 bg-primary/5 rounded-lg p-4 hover:border-primary/30 hover:bg-primary/10 transition-all duration-300"
+              className="border border-primary/10 bg-primary/5 rounded-lg p-5 hover:border-primary/30 hover:bg-primary/10 transition-all duration-300"
             >
-              <span className="text-2xl mb-2 block">{f.icon}</span>
+              <div className="mb-3"><f.icon /></div>
               <span className="text-xs text-slate-300 font-medium tracking-wide">
                 {f.label}
               </span>
