@@ -33,16 +33,15 @@ if (empty($email) || strpos($email, '@') === false) {
 }
 
 $apiKey = 'ZRLsrFSIMesxrkK5fRNZGpRVDo5uAOsjjzrPt76Df5b9909d';
-$reachUrl = 'https://api.hostinger.com/api/reach/v1/contacts';
+$reachUrl = 'https://developers.hostinger.com/api/reach/v1/contacts';
 
 $ch = curl_init($reachUrl);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Content-Type: application/json',
     'Authorization: Bearer ' . $apiKey,
 ]);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
     'name' => $name,
     'email' => $email,
 ]));
