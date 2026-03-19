@@ -32,7 +32,7 @@ if (empty($email) || strpos($email, '@') === false) {
     exit();
 }
 
-$apiKey = 'IR5Su1tXK7vUrQKCEbswLhhUYxla8aS4qXZ9IpcZe07fa41e';
+$apiKey = 'ZRLsrFSIMesxrkK5fRNZGpRVDo5uAOsjjzrPt76Df5b9909d';
 $reachUrl = 'https://api.hostinger.com/api/reach/v1/contacts';
 
 $ch = curl_init($reachUrl);
