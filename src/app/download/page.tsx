@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CountdownTimer from "@/components/CountdownTimer";
 
 const EPUB_URL =
   "https://assets.zyrosite.com/bIWAzaiH02VksK8O/tokorel-prequels-WCYNOmZUuEPAsb6X.epub";
@@ -181,33 +182,50 @@ export default function DownloadPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {BOOKS.map((book) => (
-                <div
-                  key={book.title}
-                  className="bg-primary/5 border border-primary/10 p-6 rounded-xl hover:bg-primary/10 transition-all cursor-pointer group"
-                >
-                  <div className="aspect-[2/3] mb-6 rounded shadow-lg overflow-hidden border border-primary/20">
-                    <Image
-                      src={book.cover}
-                      alt={`Book cover: ${book.title}`}
-                      width={400}
-                      height={600}
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                    />
+              {BOOKS.map((book) => {
+                const Card = (
+                  <div
+                    className={`bg-primary/5 border border-primary/10 p-6 rounded-xl hover:bg-primary/10 transition-all group ${book.href ? "cursor-pointer" : ""}`}
+                  >
+                    <div className="aspect-[2/3] mb-6 rounded shadow-lg overflow-hidden border border-primary/20">
+                      <Image
+                        src={book.cover}
+                        alt={`Book cover: ${book.title}`}
+                        width={400}
+                        height={600}
+                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                      />
+                    </div>
+                    <h4 className="text-xl font-bold text-slate-100 mb-2">
+                      {book.title}
+                    </h4>
+                    <p className="text-sm text-slate-400 mb-4 line-clamp-3">
+                      {book.description}
+                    </p>
+                    <span className="text-xs text-primary font-bold tracking-widest uppercase">
+                      {book.label}
+                    </span>
+                    {book.href && (
+                      <span className="block mt-3 text-xs text-accent font-medium tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity">
+                        Read on Kindle &rarr;
+                      </span>
+                    )}
                   </div>
-                  <h4 className="text-xl font-bold text-slate-100 mb-2">
-                    {book.title}
-                  </h4>
-                  <p className="text-sm text-slate-400 mb-4 line-clamp-3">
-                    {book.description}
-                  </p>
-                  <span className="text-xs text-primary font-bold tracking-widest uppercase">
-                    {book.label}
-                  </span>
-                </div>
-              ))}
+                );
+
+                return book.href ? (
+                  <a key={book.title} href={book.href} target="_blank" rel="noopener noreferrer">
+                    {Card}
+                  </a>
+                ) : (
+                  <div key={book.title}>{Card}</div>
+                );
+              })}
             </div>
           </section>
+
+          {/* Countdown Timer */}
+          <CountdownTimer />
 
           {/* Continue CTA */}
           <section className="text-center py-24 bg-gradient-to-t from-primary/10 to-transparent rounded-3xl border border-primary/5">
@@ -240,6 +258,7 @@ const BOOKS = [
     description:
       "The catalyst. Where the journey begins for the chosen bridge between worlds.",
     label: "Book One",
+    href: "https://www.amazon.com/kindle-dbs/hz/subscribe/ku?ref=dbs_p_ebk_r00_pbcb_diupu0&passThroughAsin=B0C8S4TJWW",
   },
   {
     title: "Tokorel",
@@ -247,6 +266,7 @@ const BOOKS = [
     description:
       "The central system faces its ultimate trial as the prophecy unfolds across the stars.",
     label: "Book Two",
+    href: null,
   },
   {
     title: "Cornerstone",
@@ -254,6 +274,7 @@ const BOOKS = [
     description:
       "The final stand. Everything must be rebuilt from the fragments of the old world.",
     label: "Book Three",
+    href: null,
   },
 ];
 
