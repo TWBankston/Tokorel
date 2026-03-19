@@ -3,6 +3,12 @@ DirectoryIndex index.html
 # Process PHP files
 AddHandler application/x-httpd-php .php
 
+# Protect auth config from direct web access
+<Files "config.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
 # Rewrite rules for clean URLs
 <IfModule mod_rewrite.c>
     RewriteEngine On
@@ -18,4 +24,13 @@ AddHandler application/x-httpd-php .php
 
     # Rewrite /subscribe to /subscribe.php
     RewriteRule ^subscribe$ /subscribe.php [L]
+
+    # Rewrite /login to /login.html
+    RewriteRule ^login$ /login.html [L]
+
+    # Rewrite /portal to /portal.html
+    RewriteRule ^portal$ /portal.html [L]
+
+    # Rewrite /admin to /admin.html
+    RewriteRule ^admin$ /admin.html [L]
 </IfModule>
