@@ -51,6 +51,16 @@ export default function RootLayout({
       </head>
       <body className={`${spaceGrotesk.variable} font-[family-name:var(--font-display)] antialiased overflow-x-hidden`}>
         {children}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-838XTCHY8X"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-838XTCHY8X');`}
+        </Script>
         <Script id="meta-pixel" strategy="afterInteractive">
           {`!function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
