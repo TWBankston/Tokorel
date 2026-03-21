@@ -6,8 +6,7 @@ import Footer from "@/components/Footer";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
 
-const EPUB_URL =
-  "https://assets.zyrosite.com/bIWAzaiH02VksK8O/tokorel-prequels-WCYNOmZUuEPAsb6X.epub";
+const EPUB_URL = "/downloads/tokorel-prequel.epub";
 const PDF_URL = "/downloads/tokorel-prequel.pdf";
 
 const BOOKS = [
