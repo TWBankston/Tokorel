@@ -191,6 +191,37 @@ function DashboardContent() {
             </div>
 
             <div className="h-px bg-gradient-to-r from-primary/40 via-primary/10 to-transparent" />
+
+            {/* Free novella notification */}
+            <Link
+              href="/portal-downloads"
+              className="mt-8 block group"
+              onClick={() => play("navigate")}
+            >
+              <div className="relative overflow-hidden rounded-xl border border-accent/30 bg-gradient-to-r from-accent/10 via-accent/5 to-primary/10 px-6 py-5 md:px-8 md:py-6 hover:border-accent/50 transition-all duration-300">
+                <div className="absolute top-0 right-0 w-40 h-40 bg-accent/10 blur-[80px] rounded-full pointer-events-none" />
+                <div className="relative flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
+                  <span className="shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-accent/20 border border-accent/30">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-accent">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="7 10 12 15 17 10" />
+                      <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                  </span>
+                  <div className="flex-1">
+                    <p className="text-lg md:text-xl font-bold text-slate-100">
+                      Thank you for signing up! Download your free copy of the prequel novella, <em className="text-accent not-italic">&lsquo;The Sentence&rsquo;</em>
+                    </p>
+                    <p className="text-sm text-slate-400 mt-1">
+                      Head to the Downloads page to claim your copy now.
+                    </p>
+                  </div>
+                  <span className="shrink-0 text-accent font-bold text-sm uppercase tracking-wider group-hover:translate-x-1 transition-transform">
+                    Download &rarr;
+                  </span>
+                </div>
+              </div>
+            </Link>
           </div>
 
           {/* Dashboard Grid */}
