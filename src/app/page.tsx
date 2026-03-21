@@ -48,9 +48,12 @@ const BOOKS = [
     cover: "/images/book-covers/cornerstone.jpg",
     description:
       "The final stand. Everything must be rebuilt from the fragments of the old world — or lost forever.",
-    label: "Book Three — Coming Soon",
-    available: false,
-    links: [] as { text: string; href: string }[],
+    label: "Book Three — Available Now",
+    available: true,
+    links: [
+      { text: "Paperback", href: "https://www.amazon.com/Cornerstone-Tokorel-Mr-Drew-Bankston/dp/B0GRV9VNRL/ref=tmm_pap_swatch_0" },
+      { text: "Kindle", href: "https://www.amazon.com/Cornerstone-Book-Tokorel-Drew-Bankston-ebook/dp/B0GS6FSZ67/ref=tmm_kin_swatch_0" },
+    ],
   },
 ];
 

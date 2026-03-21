@@ -38,7 +38,10 @@ const BOOKS = [
     description:
       "The final stand. Everything must be rebuilt from the fragments of the old world.",
     label: "Book Three",
-    links: [] as { text: string; href: string }[],
+    links: [
+      { text: "Paperback", href: "https://www.amazon.com/Cornerstone-Tokorel-Mr-Drew-Bankston/dp/B0GRV9VNRL/ref=tmm_pap_swatch_0" },
+      { text: "Kindle", href: "https://www.amazon.com/Cornerstone-Book-Tokorel-Drew-Bankston-ebook/dp/B0GS6FSZ67/ref=tmm_kin_swatch_0" },
+    ],
   },
 ];
 
