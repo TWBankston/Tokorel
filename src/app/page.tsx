@@ -26,18 +26,22 @@ const BOOKS = [
       "Where the journey begins. Linsora and Permac are forced together on a journey through the cosmos, uncovering pockets of truth that challenge everything their civilizations thought they knew.",
     label: "Book One — Available Now",
     available: true,
-    kindleHref: "https://www.amazon.com/kindle-dbs/hz/subscribe/ku?ref=dbs_p_ebk_r00_pbcb_diupu0&passThroughAsin=B0C8S4TJWW",
-    audibleHref: "https://www.audible.com/pd/Khizara-Audiobook/B0GP9Y63JS",
+    links: [
+      { text: "Paperback", href: "https://www.amazon.com/gp/product/0997554711?ref_=dbs_m_mng_rwt_calw_tpbk_0&storeType=ebooks" },
+      { text: "Kindle", href: "https://www.amazon.com/kindle-dbs/hz/subscribe/ku?ref=dbs_p_ebk_r00_pbcb_diupu0&passThroughAsin=B0C8S4TJWW" },
+      { text: "Audible", href: "https://www.audible.com/pd/Khizara-Audiobook/B0GP9Y63JS" },
+    ],
   },
   {
     title: "Tokorel",
     cover: "/images/book-covers/tokorel-book-2.jpg",
     description:
       "The prophecy deepens. As the central system faces its ultimate trial, the bridge between two enemies becomes the galaxy's only hope.",
-    label: "Book Two — Coming Soon",
-    available: false,
-    kindleHref: null as string | null,
-    audibleHref: null as string | null,
+    label: "Book Two — Available Now",
+    available: true,
+    links: [
+      { text: "Buy on Amazon", href: "https://www.amazon.com/gp/product/B0DP5HBHZS?ref_=dbs_m_mng_rwt_calw_tpbk_1&storeType=ebooks" },
+    ],
   },
   {
     title: "Cornerstone",
@@ -46,8 +50,7 @@ const BOOKS = [
       "The final stand. Everything must be rebuilt from the fragments of the old world — or lost forever.",
     label: "Book Three — Coming Soon",
     available: false,
-    kindleHref: null as string | null,
-    audibleHref: null as string | null,
+    links: [] as { text: string; href: string }[],
   },
 ];
 
@@ -378,28 +381,20 @@ function LandingContent() {
                     <span className={`text-xs font-bold tracking-widest uppercase ${book.available ? "text-primary" : "text-slate-500"}`}>
                       {book.label}
                     </span>
-                    {(book.kindleHref || book.audibleHref) && (
-                      <div className="flex flex-wrap gap-2 mt-4">
-                        {book.kindleHref && (
+                    {book.links.length > 0 && (
+                      <div className="flex flex-col gap-2 mt-4">
+                        {book.links.map((link) => (
                           <a
-                            href={book.kindleHref}
+                            key={link.text}
+                            href={link.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-primary/30 bg-primary/10 text-xs text-primary font-medium tracking-wider uppercase hover:bg-primary/20 hover:border-primary/50 transition-all"
+                            className="inline-flex items-center justify-between px-4 py-2.5 rounded-lg border border-primary/20 bg-primary/5 text-sm text-slate-300 font-medium hover:bg-primary/15 hover:border-primary/40 hover:text-white transition-all group/link"
                           >
-                            Read on Kindle &rarr;
+                            {link.text}
+                            <span className="text-primary text-xs opacity-60 group-hover/link:opacity-100 transition-opacity">&rarr;</span>
                           </a>
-                        )}
-                        {book.audibleHref && (
-                          <a
-                            href={book.audibleHref}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-accent/30 bg-accent/10 text-xs text-accent font-medium tracking-wider uppercase hover:bg-accent/20 hover:border-accent/50 transition-all"
-                          >
-                            Listen on Audible &rarr;
-                          </a>
-                        )}
+                        ))}
                       </div>
                     )}
                   </div>
