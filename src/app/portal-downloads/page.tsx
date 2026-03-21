@@ -17,7 +17,8 @@ const BOOKS = [
     description:
       "The catalyst. Where the journey begins for the chosen bridge between worlds.",
     label: "Book One",
-    href: "https://www.amazon.com/kindle-dbs/hz/subscribe/ku?ref=dbs_p_ebk_r00_pbcb_diupu0&passThroughAsin=B0C8S4TJWW",
+    kindleHref: "https://www.amazon.com/kindle-dbs/hz/subscribe/ku?ref=dbs_p_ebk_r00_pbcb_diupu0&passThroughAsin=B0C8S4TJWW",
+    audibleHref: "https://www.audible.com/pd/Khizara-Audiobook/B0GP9Y63JS",
   },
   {
     title: "Tokorel",
@@ -25,7 +26,8 @@ const BOOKS = [
     description:
       "The central system faces its ultimate trial as the prophecy unfolds across the stars.",
     label: "Book Two",
-    href: null as string | null,
+    kindleHref: null as string | null,
+    audibleHref: null as string | null,
   },
   {
     title: "Cornerstone",
@@ -33,7 +35,8 @@ const BOOKS = [
     description:
       "The final stand. Everything must be rebuilt from the fragments of the old world.",
     label: "Book Three",
-    href: null as string | null,
+    kindleHref: null as string | null,
+    audibleHref: null as string | null,
   },
 ];
 
@@ -213,45 +216,55 @@ function DownloadsContent() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {BOOKS.map((book) => {
-                const Card = (
-                  <div
-                    className={`bg-primary/5 border border-primary/10 p-6 rounded-xl hover:bg-primary/10 transition-all group ${book.href ? "cursor-pointer" : ""}`}
-                  >
-                    <div className="aspect-[2/3] mb-6 rounded shadow-lg overflow-hidden border border-primary/20">
-                      <Image
-                        src={book.cover}
-                        alt={`Book cover: ${book.title}`}
-                        width={400}
-                        height={600}
-                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                      />
-                    </div>
-                    <h4 className="text-xl font-bold text-slate-100 mb-2">
-                      {book.title}
-                    </h4>
-                    <p className="text-sm text-slate-400 mb-4 line-clamp-3">
-                      {book.description}
-                    </p>
-                    <span className="text-xs text-primary font-bold tracking-widest uppercase">
-                      {book.label}
-                    </span>
-                    {book.href && (
-                      <span className="block mt-3 text-xs text-accent font-medium tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity">
-                        Read on Kindle &rarr;
-                      </span>
-                    )}
+              {BOOKS.map((book) => (
+                <div
+                  key={book.title}
+                  className="bg-primary/5 border border-primary/10 p-6 rounded-xl hover:bg-primary/10 transition-all group"
+                >
+                  <div className="aspect-[2/3] mb-6 rounded shadow-lg overflow-hidden border border-primary/20">
+                    <Image
+                      src={book.cover}
+                      alt={`Book cover: ${book.title}`}
+                      width={400}
+                      height={600}
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                    />
                   </div>
-                );
-
-                return book.href ? (
-                  <a key={book.title} href={book.href} target="_blank" rel="noopener noreferrer">
-                    {Card}
-                  </a>
-                ) : (
-                  <div key={book.title}>{Card}</div>
-                );
-              })}
+                  <h4 className="text-xl font-bold text-slate-100 mb-2">
+                    {book.title}
+                  </h4>
+                  <p className="text-sm text-slate-400 mb-4 line-clamp-3">
+                    {book.description}
+                  </p>
+                  <span className="text-xs text-primary font-bold tracking-widest uppercase">
+                    {book.label}
+                  </span>
+                  {(book.kindleHref || book.audibleHref) && (
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {book.kindleHref && (
+                        <a
+                          href={book.kindleHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-primary/30 bg-primary/10 text-xs text-primary font-medium tracking-wider uppercase hover:bg-primary/20 hover:border-primary/50 transition-all"
+                        >
+                          Read on Kindle &rarr;
+                        </a>
+                      )}
+                      {book.audibleHref && (
+                        <a
+                          href={book.audibleHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-accent/30 bg-accent/10 text-xs text-accent font-medium tracking-wider uppercase hover:bg-accent/20 hover:border-accent/50 transition-all"
+                        >
+                          Listen on Audible &rarr;
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </section>
 
