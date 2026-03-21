@@ -241,6 +241,9 @@ function LandingContent() {
                 <p className="text-slate-400 text-sm mt-4 font-medium">
                   Readers who join the archives receive early lore, discoveries, and new Tokorel stories.
                 </p>
+                <p className="text-slate-600 text-[11px] mt-2 max-w-sm mx-auto leading-relaxed">
+                  Unsubscribe at any time. We respect your privacy — your information will never be sold, shared, or distributed to third parties.
+                </p>
               </div>
             </main>
           </div>
@@ -385,6 +388,9 @@ function LandingContent() {
                   <span className="h-1 w-1 rounded-full bg-primary" />
                   <span>Encrypted</span>
                 </div>
+                <p className="text-slate-600 text-[11px] max-w-sm mx-auto leading-relaxed">
+                  Unsubscribe at any time. We respect your privacy — your information will never be sold, shared, or distributed to third parties.
+                </p>
               </div>
             </div>
           </section>
