@@ -162,8 +162,8 @@ function LandingContent() {
                   An epic sci-fi book series of mystery, love, archaeology, and enemies who can control emotions with a thought.
                 </p>
 
-                <a
-                  href="#signup"
+                <button
+                  onClick={() => document.getElementById("signup")?.scrollIntoView({ behavior: "smooth" })}
                   className="inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-bg-dark font-bold px-10 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 uppercase tracking-wider text-lg"
                 >
                   Get a Free Novella
@@ -171,7 +171,7 @@ function LandingContent() {
                     <path d="M12 5v14" />
                     <path d="m19 12-7 7-7-7" />
                   </svg>
-                </a>
+                </button>
 
                 <p className="text-slate-600 text-xs">
                   Scroll to explore the universe
@@ -461,6 +461,17 @@ function LandingContent() {
                     </li>
                   </ul>
                 </div>
+
+                <button
+                  onClick={() => document.getElementById("signup")?.scrollIntoView({ behavior: "smooth" })}
+                  className="inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-bg-dark font-bold px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 uppercase tracking-wider mt-2"
+                >
+                  Sign Up &amp; Get Your Copy
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                    <path d="M12 5v14" />
+                    <path d="m19 12-7 7-7-7" />
+                  </svg>
+                </button>
               </div>
             </div>
           </section>
