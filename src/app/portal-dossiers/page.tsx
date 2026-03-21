@@ -235,6 +235,9 @@ function DossiersContent() {
               </Link>
 
               <nav className="flex items-center gap-8">
+                <Link href="/account" className="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
+                  Account
+                </Link>
                 {user?.role === "admin" && (
                   <Link href="/admin" className="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
                     Admin
@@ -254,6 +257,7 @@ function DossiersContent() {
                 <Link href="/portal" className="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">Dashboard</Link>
                 <Link href="/portal-downloads" className="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">Downloads</Link>
                 <Link href="/portal-dossiers" className="text-xs font-medium uppercase tracking-widest text-primary">Dossiers</Link>
+                <Link href="/account" className="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">Account</Link>
                 {user?.role === "admin" && (
                   <Link href="/admin" className="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">Admin</Link>
                 )}

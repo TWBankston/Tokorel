@@ -85,6 +85,9 @@ function DownloadsContent() {
               </Link>
 
               <nav className="flex items-center gap-8 justify-end">
+                <Link href="/account" className="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
+                  Account
+                </Link>
                 {user?.role === "admin" && (
                   <Link href="/admin" className="text-sm font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
                     Admin
@@ -119,6 +122,9 @@ function DownloadsContent() {
                 </Link>
                 <Link href="/portal-dossiers" className="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
                   Dossiers
+                </Link>
+                <Link href="/account" className="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
+                  Account
                 </Link>
                 {user?.role === "admin" && (
                   <Link href="/admin" className="text-xs font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-colors">
