@@ -29,7 +29,8 @@ const BOOKS = [
       "The central system faces its ultimate trial as the prophecy unfolds across the stars.",
     label: "Book Two",
     links: [
-      { text: "Buy on Amazon", href: "https://www.amazon.com/gp/product/B0DP5HBHZS?ref_=dbs_m_mng_rwt_calw_tpbk_1&storeType=ebooks" },
+      { text: "Paperback", href: "https://www.amazon.com/Tokorel-Book-2-Drew-Bankston/dp/B0DP5HBHZS/ref=tmm_pap_swatch_0" },
+      { text: "Kindle (Free)", href: "https://www.amazon.com/Tokorel-Book-2-Drew-Bankston-ebook/dp/B0DB4LXC68/ref=tmm_kin_swatch_0" },
     ],
   },
   {
