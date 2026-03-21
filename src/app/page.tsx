@@ -409,25 +409,6 @@ function LandingContent() {
           </section>
 
           {/* ═══════════════════════════════════════════════════
-              PROPHECY BREAKER
-             ═══════════════════════════════════════════════════ */}
-          <section className="py-20 px-6 relative z-10">
-            <div className="max-w-4xl mx-auto relative rounded-2xl border border-primary/10 bg-gradient-to-br from-primary/5 to-transparent overflow-hidden">
-              <div className="absolute inset-0 parchment-texture" />
-              <div className="relative z-10 py-16 px-8 text-center space-y-6">
-                <span className="text-primary text-5xl opacity-50">&#10022;</span>
-                <blockquote className="text-2xl md:text-4xl font-light italic text-primary/90 max-w-3xl mx-auto leading-relaxed">
-                  &ldquo;From the blood of two enemies, a bridge shall be born.&rdquo;
-                </blockquote>
-                <div className="w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto" />
-                <p className="text-xs uppercase tracking-[0.4em] text-primary/40 font-bold">
-                  The Fragment of Khizara
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* ═══════════════════════════════════════════════════
               FREE NOVELLA + PREQUEL SECTION
              ═══════════════════════════════════════════════════ */}
           <section className="py-24 md:py-32 px-6 relative z-10">
@@ -559,6 +540,23 @@ function LandingContent() {
                 </p>
                 <p className="text-slate-600 text-[11px] max-w-sm mx-auto leading-relaxed">
                   Unsubscribe at any time. We respect your privacy — your information will never be sold, shared, or distributed to third parties.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* ═══════════════════════════════════════════════════
+              PROPHECY QUOTE
+             ═══════════════════════════════════════════════════ */}
+          <section className="py-16 px-6 relative z-10">
+            <div className="max-w-4xl mx-auto relative rounded-2xl border border-primary/10 bg-gradient-to-br from-primary/5 to-transparent overflow-hidden">
+              <div className="absolute inset-0 parchment-texture" />
+              <div className="relative z-10 py-12 px-8 text-center space-y-4">
+                <blockquote className="text-xl md:text-2xl font-light italic text-primary/80 max-w-3xl mx-auto leading-relaxed">
+                  &ldquo;From the blood of two enemies, a bridge shall be born.&rdquo;
+                </blockquote>
+                <p className="text-xs uppercase tracking-[0.4em] text-primary/30 font-bold">
+                  The Fragment of Khizara
                 </p>
               </div>
             </div>
