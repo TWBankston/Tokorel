@@ -700,21 +700,21 @@ function AnalyticsSection({ mounted }: { mounted: boolean }) {
       <div>
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 uppercase italic text-slate-100">
           <span className="text-primary text-3xl">◈</span>
-          System Analytics
+          Intelligence Overview
         </h2>
         <div className="space-y-5">
-          <ProgressBar label="Khizaran Database" value={94} delay={500} mounted={mounted} />
-          <ProgressBar label="Tokorellan Intelligence" value={82} delay={650} mounted={mounted} />
-          <ProgressBar label="Cross-Reference Index" value={99} delay={800} mounted={mounted} />
+          <ProgressBar label="Khizaran Archaeological Records" value={94} delay={500} mounted={mounted} />
+          <ProgressBar label="Tokorellan Psychic Activity Index" value={87} delay={650} mounted={mounted} />
+          <ProgressBar label="Prophecy Fragment Decryption" value={41} delay={800} mounted={mounted} />
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         {[
-          { icon: "⚡", title: "Power Surge", desc: "Enhanced ability cooldown reduction active." },
-          { icon: "◎", title: "Deep Scan", desc: "Identifying hidden enemy signatures." },
-          { icon: "◇", title: "Defense Array", desc: "Kinetic shielding at maximum capacity." },
-          { icon: "⟐", title: "Neural Hub", desc: "Shared visual feed across all operatives." },
+          { icon: "✦", title: "Echo Anomaly", desc: "Residual psychic impressions detected at Pak'bor excavation site." },
+          { icon: "◎", title: "Empathic Signatures", desc: "One known individual can detect Tokorellan emotional influence." },
+          { icon: "⚔", title: "The Great Battling", desc: "200-year conflict between Khizara and Tokorel remains unresolved." },
+          { icon: "◈", title: "The Prophecy", desc: "\"From the blood of two enemies, a bridge shall be born.\"" },
         ].map((item) => (
           <div key={item.title} className="bg-bg-dark/50 p-5 rounded-xl border border-primary/20 text-center hover:border-primary/40 transition-colors">
             <span className="text-primary text-2xl">{item.icon}</span>
