@@ -260,8 +260,8 @@ const BOOKS = [
       "The catalyst. Where the journey begins for the chosen bridge between worlds.",
     label: "Book One",
     links: [
-      { text: "Paperback", href: "https://www.amazon.com/gp/product/0997554711?ref_=dbs_m_mng_rwt_calw_tpbk_0&storeType=ebooks" },
-      { text: "Kindle", href: "https://www.amazon.com/kindle-dbs/hz/subscribe/ku?ref=dbs_p_ebk_r00_pbcb_diupu0&passThroughAsin=B0C8S4TJWW" },
+      { text: "Paperback", href: "https://www.amazon.com/Khizara-Tokorel-Mr-Drew-Bankston/dp/0997554711/ref=tmm_pap_swatch_0" },
+      { text: "Kindle (Free w/ Kindle Unlimited)", href: "https://www.amazon.com/Khizara-Book-Tokorel-Drew-Bankston-ebook/dp/B0C8S4TJWW/ref=tmm_kin_swatch_0" },
       { text: "Audible", href: "https://www.audible.com/pd/Khizara-Audiobook/B0GP9Y63JS" },
     ],
   },
@@ -273,7 +273,7 @@ const BOOKS = [
     label: "Book Two",
     links: [
       { text: "Paperback", href: "https://www.amazon.com/Tokorel-Book-2-Drew-Bankston/dp/B0DP5HBHZS/ref=tmm_pap_swatch_0" },
-      { text: "Kindle (Free)", href: "https://www.amazon.com/Tokorel-Book-2-Drew-Bankston-ebook/dp/B0DB4LXC68/ref=tmm_kin_swatch_0" },
+      { text: "Kindle (Free w/ Kindle Unlimited)", href: "https://www.amazon.com/Tokorel-Book-2-Drew-Bankston-ebook/dp/B0DB4LXC68/ref=tmm_kin_swatch_0" },
     ],
   },
   {
